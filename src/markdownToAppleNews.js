@@ -20,7 +20,7 @@ module.exports = function markdownToAppleNews(markdown, {
   componentTextStyles,
   componentStyles,
   textStyles,
-}) => {
+}) {
   const appleNewsArticleJson = {
     title,
     author: authorName && {
