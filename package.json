@@ -1,6 +1,6 @@
 {
   "name": "markdown-article-format",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Transform markdown articles to HTML, AMP, FB Instant Articles, Apple News Format, and Mic's article-json format",
   "main": "src/index.js",
   "author": "Dan Scanlon",
