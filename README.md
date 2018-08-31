@@ -26,7 +26,7 @@ const html = markdownToHtml(`
 ```javascript
 import { markdownToAmp } from 'markdown-article-format';
 
-const amp = markdownToHtml(`
+const amp = markdownToAmp(`
   # Example
   This is an example.
 `);
@@ -36,7 +36,7 @@ const amp = markdownToHtml(`
 ```javascript
 import { markdownToAppleNews } from 'markdown-article-format';
 
-const appleNews = markdownToHtml(`
+const appleNews = markdownToAppleNews(`
   # Example
   This is an example.
 `, {
