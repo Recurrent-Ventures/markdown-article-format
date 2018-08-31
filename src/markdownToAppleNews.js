@@ -44,7 +44,5 @@ module.exports = function markdownToAppleNews(markdown, {
     textStyles,
   };
   
-  const { article } = markdownToAppleNews(appleNewsArticleJson, appleNewsOpts);
-
-  return article;
+  return articleJsonToAppleNews(appleNewsArticleJson, appleNewsOpts);
 }
