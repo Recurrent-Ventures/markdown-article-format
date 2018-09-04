@@ -19,7 +19,7 @@ module.exports = function markdownToAppleNews(markdown, {
   componentLayouts,
   componentTextStyles,
   componentStyles,
-  textStyles,
+  textStyles
 }) {
   const appleNewsArticleJson = {
     title,
@@ -45,4 +45,4 @@ module.exports = function markdownToAppleNews(markdown, {
   };
   
   return articleJsonToAppleNews(appleNewsArticleJson, appleNewsOpts);
-}
+};

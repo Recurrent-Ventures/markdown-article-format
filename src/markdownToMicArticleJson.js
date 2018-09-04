@@ -5,5 +5,5 @@ const markdownToHtml = require('./markdownToHtml');
 // markdown -> micArticleJson
 module.exports = compose(
   htmlToArticleJson,
-  markdownToHtml,
+  markdownToHtml
 );
