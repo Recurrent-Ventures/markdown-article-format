@@ -5,5 +5,5 @@ const markdownToMicArticleJson = require('./markdownToMicArticleJson');
 // markdown -> fbInstantArticle
 module.exports = compose(
   articleJsonToFbia,
-  markdownToMicArticleJson,
+  markdownToMicArticleJson
 );

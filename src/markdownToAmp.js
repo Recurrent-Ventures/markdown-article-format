@@ -6,5 +6,5 @@ const markdownToMicArticleJson = require('./markdownToMicArticleJson');
 // markdown -> amp
 module.exports = compose(
   micArticleJsonToAmp,
-  markdownToMicArticleJson,
+  markdownToMicArticleJson
 );
