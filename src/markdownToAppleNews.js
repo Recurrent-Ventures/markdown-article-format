@@ -1,5 +1,4 @@
 const articleJsonToAppleNews = require('article-json-to-apple-news');
-const { compose } = require('lodash/fp');
 const markdownToMicArticleJson = require('./markdownToMicArticleJson');
 
 // markdown -> appleNews
