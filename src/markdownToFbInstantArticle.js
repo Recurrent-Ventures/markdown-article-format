@@ -44,43 +44,43 @@ function wrapFbInstantArticleBody(articleBody, options) {
         { meta: [{ _attr: { property: 'op:markup_version', content: 'v1.0' } }] },
         { meta: [{ _attr: { property: 'fb:article_style', content: options.articleStyleName } }] },
       ] },
-    ],
-    body: [
-      { article: [
-        { header: [
-          // Title & Subtitle
-          { h1: options.title },
-          { h2: options.subtitle },
-          // Datetime when article was originally published
-          { time: [
-            { _attr: { class: 'op-published', datetime: options.publishedDate } },
-            moment(options.publishedDate).format('MMMM Do, H:MMa'),
-          ] },
-          // Datetime when article was last updated
-          { time: [
-            { _attr: { class: 'op-published', datetime: options.updatedDate } },
-            moment(options.updatedDate).format('MMMM Do, H:MMa'),
-          ] },
-          // Author
-          { address: [
-            { a: [
-              { _attr: { href: options.authorLink } },
-              options.authorName,
+      { body: [
+        { article: [
+          { header: [
+            // Title & Subtitle
+            { h1: options.title },
+            { h2: options.subtitle },
+            // Datetime when article was originally published
+            { time: [
+              { _attr: { class: 'op-published', datetime: options.publishedDate } },
+              moment(options.publishedDate).format('MMMM Do, H:MMa'),
+            ] },
+            // Datetime when article was last updated
+            { time: [
+              { _attr: { class: 'op-published', datetime: options.updatedDate } },
+              moment(options.updatedDate).format('MMMM Do, H:MMa'),
+            ] },
+            // Author
+            { address: [
+              { a: [
+                { _attr: { href: options.authorLink } },
+                options.authorName,
+              ] },
+            ] },
+            // Featured image
+            { figure: [
+              { img: [{ _attr: { src: options.featuredImage } }] },
+              // { figcaption: '' },
+            ] },
+            // Mini-title
+            { h3: [
+              { _attr: { class: 'op-kicker' } },
+              options.miniTitle,
             ] },
           ] },
-          // Featured image
-          { figure: [
-            { img: [{ _attr: { src: options.featuredImage } }] },
-            // { figcaption: '' },
-          ] },
-          // Mini-title
-          { h3: [
-            { _attr: { class: 'op-kicker' } },
-            options.miniTitle,
-          ] },
+          // Article body
+          { _cdata: articleBody },
         ] },
-        // Article body
-        { _cdata: articleBody },
       ] },
     ],
   });
