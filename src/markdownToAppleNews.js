@@ -3,15 +3,15 @@ const markdownToMicArticleJson = require('./markdownToMicArticleJson');
 
 // markdown -> appleNews
 module.exports = function markdownToAppleNews(markdown, {
-  title,
-  subtitle,
-  authorName, // optional
   authorLink, // optional
-  featuredImage, // TODO: Use this
+  authorName, // optional
   canonicalUrl,
-  slug,
-  tags,
+  featuredImage,
   publishedDate,
+  slug,
+  subtitle,
+  tags,
+  title,
   updatedDate,
   // apple news document styling options (optional)
   layout,
@@ -21,14 +21,18 @@ module.exports = function markdownToAppleNews(markdown, {
   textStyles,
 }) {
   const appleNewsArticleJson = {
-    title,
     author: authorName && {
       name: authorName,
       href: authorLink,
     },
-    publishedDate,
-    modifiedDate: updatedDate,
     body: markdownToMicArticleJson(markdown),
+    headerEmbed: {
+      src: featuredImage,
+      type: 'image',
+    },
+    modifiedDate: updatedDate,
+    publishedDate,
+    title,
   };
   const appleNewsOpts = {
     canonicalURL: canonicalUrl,
