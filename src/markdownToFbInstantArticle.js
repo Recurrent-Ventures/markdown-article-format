@@ -51,16 +51,16 @@ function wrapFbInstantArticleBody(articleBody, options) {
 
             <!-- Datetime when article was originally published -->
             <time class="op-published" datetime="${options.publishedDate}">
-              ${moment(options.publishedDate).format('MMMM Do, H:MMa')}
+              ${moment(options.publishedDate).format('MMMM Do, h:MMa')}
             </time>
             <!-- Datetime when article was last updated -->
             <time class="op-modified" datetime="${options.updatedDate}">
-              ${moment(options.updatedDate).format('MMMM Do, H:MMa')}
+              ${moment(options.updatedDate).format('MMMM Do, h:MMa')}
             </time>
 
             <!-- Author -->
             <address>
-              <a href="${options.authorLink}">${options.autherName}</a>
+              <a href="${options.authorLink}">${options.authorName}</a>
             </address>
 
             <!-- Featured image --> 
