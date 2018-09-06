@@ -1,6 +1,5 @@
 const articleJsonToFbia = require('article-json-to-fbia');
 const moment = require('moment');
-const xml = require('xml');
 const markdownToMicArticleJson = require('./markdownToMicArticleJson');
 
 // markdown -> fbInstantArticle
@@ -35,53 +34,50 @@ module.exports = function markdownToFbInstantArticle(markdown, {
 };
 
 function wrapFbInstantArticleBody(articleBody, options) {
-  return xml({
-    html: [
-      { _attr: { lang: 'en', prefix: 'op: http://media.facebook.com/op#'} },
-      { head: [
-        { meta: [{ _attr: { charset: 'utf-8' } }] },
-        { link: [{ _attr: { rel: 'canonical', href: options.canonicalUrl } }] },
-        { meta: [{ _attr: { property: 'op:markup_version', content: 'v1.0' } }] },
-        { meta: [{ _attr: { property: 'fb:article_style', content: options.articleStyleName } }] },
-      ] },
-      { body: [
-        { article: [
-          { header: [
-            // Title & Subtitle
-            { h1: options.title },
-            { h2: options.subtitle },
-            // Datetime when article was originally published
-            { time: [
-              { _attr: { class: 'op-published', datetime: options.publishedDate } },
-              moment(options.publishedDate).format('MMMM Do, H:MMa'),
-            ] },
-            // Datetime when article was last updated
-            { time: [
-              { _attr: { class: 'op-published', datetime: options.updatedDate } },
-              moment(options.updatedDate).format('MMMM Do, H:MMa'),
-            ] },
-            // Author
-            { address: [
-              { a: [
-                { _attr: { href: options.authorLink } },
-                options.authorName,
-              ] },
-            ] },
-            // Featured image
-            { figure: [
-              { img: [{ _attr: { src: options.featuredImage } }] },
-              // { figcaption: '' },
-            ] },
-            // Mini-title
-            { h3: [
-              { _attr: { class: 'op-kicker' } },
-              options.miniTitle,
-            ] },
-          ] },
-          // Article body
-          { _cdata: articleBody },
-        ] },
-      ] },
-    ],
-  });
+  return `<!doctype html>
+    <html lang="en" prefix="op: http://media.facebook.com/op#">
+      <head>
+        <meta charset="utf-8">
+        <link rel="canonical" href="${options.canonicalUrl}">
+        <meta property="op:markup_version" content="v1.0">
+        <meta property="fb:article_style" content="${options.articleStyleName}">
+      </head>
+      <body>
+        <article>
+          <header>
+            <!-- Title & subtitle -->
+            <h1>${options.title}</h1>
+            <h2>${options.subtitle}</h2>
+
+            <!-- Datetime when article was originally published -->
+            <time class="op-published" datetime="${options.publishedDate}">
+              ${moment(options.publishedDate).format('MMMM Do, H:MMa')}
+            </time>
+            <!-- Datetime when article was last updated -->
+            <time class="op-modified" datetime="${options.updatedDate}">
+              ${moment(options.updatedDate).format('MMMM Do, H:MMa')}
+            </time>
+
+            <!-- Author -->
+            <address>
+              <a href="${options.authorLink}">${options.autherName}</a>
+            </address>
+
+            <!-- Featured image --> 
+            <figure>
+              <img src="${options.featuredImage}" />
+            </figure>   
+
+            <!-- Mini-title --> 
+            <h3 class="op-kicker">
+              ${options.miniTitle}
+            </h3>        
+          </header>
+
+          <!-- Article body -->
+          ${articleBody}
+        </article>
+      </body>
+    </html>
+  `;
 }
